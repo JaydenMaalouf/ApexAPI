@@ -8,7 +8,7 @@ namespace ApexLegendsAPI
         public SearchResult() {}
 
         [JsonProperty("results")]
-        public List<ApexUser> Users { get; internal set; } = new List<ApexUser>();
+        public ICollection<ApexUser> Users { get; internal set; }
 
         [JsonProperty]
         public int TotalResults { get; internal set; }

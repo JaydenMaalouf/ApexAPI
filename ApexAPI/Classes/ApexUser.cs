@@ -1,7 +1,10 @@
-﻿using ApexLegendsAPI.Classes;
-using ApexLegendsAPI.Interfaces;
-using Newtonsoft.Json;
+﻿using System;
 using System.Threading.Tasks;
+
+using Newtonsoft.Json;
+
+using ApexLegendsAPI.Classes;
+using ApexLegendsAPI.Interfaces;
 
 namespace ApexLegendsAPI
 {
@@ -10,7 +13,7 @@ namespace ApexLegendsAPI
         internal ApexUser() { }
 
         [JsonProperty("aid")]
-        public string UserId { get; internal set; }
+        public Guid UserId { get; internal set; }
 
         [JsonProperty]
         public string Name { get; internal set; }
@@ -24,21 +27,15 @@ namespace ApexLegendsAPI
         [JsonProperty("legend")]
         public ApexLegendTypes CurrentLegend { get; internal set; }
 
-        [JsonProperty]
-        public int Level { get; internal set; }
-
-        [JsonProperty]
-        public int Kills { get; internal set; }
-
-        public async Task<ApexUserData> GetStatsAsync()
+        public async Task<ApexUserStats> GetStatsAsync()
         {
-            var content = await ApexAPI.SendRequest($"player.php?aid={UserId}");
+            var content = await ApexAPI.SendRequest($"player.php?aid={UserId.ToString("N").ToLower()}");
             if (!string.IsNullOrWhiteSpace(content))
             {
-                var userData = JsonConvert.DeserializeObject<ApexTempUserData>(content);
+                var userData = JsonConvert.DeserializeObject<ApexTempUserStats>(content);
                 if (userData != null)
                 {
-                    return new ApexUserData(userData);
+                    return new ApexUserStats(userData);
                 }
             }
             return null;

@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ApexAPI</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://github.com/JaydenMaalouf/ApexAPI/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/JaydenMaalouf/ApexAPI/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/JaydenMaalouf/ApexAPI/</RepositoryUrl>
+    <PackageTags>Apex, Legends, API, Wrapper</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <Description>An unofficial .NET API Wrapper for the Fortnite API (https://apextab.com)</Description>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApexLegendsAPI", "ApexAPI\ApexLegendsAPI.csproj", "{32F156C8-E3C0-4CAD-BA82-654740686BED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleTest", "ExampleTest\ExampleTest.csproj", "{140A159E-3022-42B3-9663-C2E124A89284}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32F156C8-E3C0-4CAD-BA82-654740686BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32F156C8-E3C0-4CAD-BA82-654740686BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32F156C8-E3C0-4CAD-BA82-654740686BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32F156C8-E3C0-4CAD-BA82-654740686BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140A159E-3022-42B3-9663-C2E124A89284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140A159E-3022-42B3-9663-C2E124A89284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140A159E-3022-42B3-9663-C2E124A89284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140A159E-3022-42B3-9663-C2E124A89284}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F3043FF-75CA-43BC-AFE0-C2E9019118C4}
+	EndGlobalSection
+EndGlobal

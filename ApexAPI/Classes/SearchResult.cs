@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ApexLegendsAPI
+using Newtonsoft.Json;
+
+namespace ApexLegendsAPI.Classes
 {
     public class SearchResult
     {
-        public SearchResult() {}
+        internal SearchResult() {}
 
         [JsonProperty("results")]
         public ICollection<ApexUser> Users { get; internal set; }

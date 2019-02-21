@@ -1,4 +1,4 @@
-﻿namespace ApexLegendsAPI
+﻿namespace ApexLegendsAPI.Enums
 {
     public enum ApexLegendTypes
     {

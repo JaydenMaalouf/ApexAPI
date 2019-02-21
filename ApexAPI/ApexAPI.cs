@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
+
+using ApexLegendsAPI.Enums;
+using ApexLegendsAPI.Classes;
 
 namespace ApexLegendsAPI
 {
@@ -18,13 +22,19 @@ namespace ApexLegendsAPI
             RequestURL = NewURL;
         }
 
-        public async Task<IEnumerable<ApexUser>> GetUsers(string PlayerName, ApexPlatform Platform = ApexPlatform.PC)
+        public async Task<IEnumerable<ApexUser>> GetUsers(string PlayerName, ApexPlatformTypes Platform = ApexPlatformTypes.PC)
         {
             var content = await SendRequest($"search.php?search={PlayerName}&platform={Platform.ToString().ToLower()}");
             if (!string.IsNullOrWhiteSpace(content))
             {
+                var result = JsonConvert.DeserializeObject<ResultError>(content);
+                if (result.IsError)
+                {
+                    return null;
+                }
+
                 var searchResults = JsonConvert.DeserializeObject<SearchResult>(content);
-                if (searchResults != null)
+                if (searchResults != null && searchResults.Users != null)
                 {
                     return searchResults.Users;
                 }
@@ -32,12 +42,32 @@ namespace ApexLegendsAPI
             return null;
         }
 
-        public async Task<ApexUser> GetUser(string PlayerName, ApexPlatform Platform = ApexPlatform.PC)
+        public async Task<ApexUser> GetUser(string PlayerName, ApexPlatformTypes Platform = ApexPlatformTypes.PC)
         {
             var searchResults = await GetUsers(PlayerName, Platform);
-            if (searchResults.Count() > 0)
+            if (searchResults != null && searchResults.Count() > 0)
             {
                 return searchResults.ElementAt(0);
+            }
+            return null;
+        }
+
+        public async Task<ApexUser> GetUser(Guid PlayerId, ApexPlatformTypes Platform = ApexPlatformTypes.PC)
+        {
+            var content = await SendRequest($"player.php?aid={PlayerId.ToString("N").ToLower()}");
+            if (!string.IsNullOrWhiteSpace(content))
+            {
+                var result = JsonConvert.DeserializeObject<ResultError>(content);
+                if (result.IsError)
+                {
+                    return null;
+                }
+
+                var user = JsonConvert.DeserializeObject<ApexUser>(content);
+                if (user != null)
+                {
+                    return user;
+                }
             }
             return null;
         }

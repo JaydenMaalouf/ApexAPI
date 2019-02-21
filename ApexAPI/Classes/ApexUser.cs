@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-using ApexLegendsAPI.Classes;
+using ApexLegendsAPI.Enums;
 using ApexLegendsAPI.Interfaces;
 
-namespace ApexLegendsAPI
+namespace ApexLegendsAPI.Classes
 {
     public class ApexUser : IApexUser
     {
@@ -16,10 +16,10 @@ namespace ApexLegendsAPI
         public Guid UserId { get; internal set; }
 
         [JsonProperty]
-        public string Name { get; internal set; }
+        public string Username { get; internal set; }
 
         [JsonProperty]
-        public ApexPlatform Platform { get; internal set; }
+        public ApexPlatformTypes Platform { get; internal set; }
 
         [JsonProperty("avatar")]
         public string AvatarURL { get; internal set; }
@@ -32,6 +32,12 @@ namespace ApexLegendsAPI
             var content = await ApexAPI.SendRequest($"player.php?aid={UserId.ToString("N").ToLower()}");
             if (!string.IsNullOrWhiteSpace(content))
             {
+                var result = JsonConvert.DeserializeObject<ResultError>(content);
+                if (result.IsError)
+                {
+                    return null;
+                }
+
                 var userData = JsonConvert.DeserializeObject<ApexTempUserStats>(content);
                 if (userData != null)
                 {

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 
 using ApexLegendsAPI;
-using ApexLegendsAPI.Classes;
 
 namespace ExampleTest
 {
@@ -16,7 +15,7 @@ namespace ExampleTest
             {
                 Console.WriteLine("API Ready!");
 
-                var user = await API.GetUser("KangaaaOCE");
+                var user = await API.GetUserAsync("KangaaaOCE");
                 if (user != null)
                 {
                     Console.WriteLine($"Username: {user.Username}");
@@ -27,7 +26,7 @@ namespace ExampleTest
                     var userStats = await user.GetStatsAsync();
                 }
 
-                var userById = await API.GetUser(Guid.Parse("f5337d769b7b29628f59d8c84ea45d9d"));
+                var userById = await API.GetUserAsync(Guid.Parse("f5337d769b7b29628f59d8c84ea45d9d"));
                 if (userById != null)
                 {
                     Console.WriteLine($"Username: {userById.Username}");

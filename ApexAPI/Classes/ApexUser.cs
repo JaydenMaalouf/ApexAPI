@@ -19,13 +19,13 @@ namespace ApexLegendsAPI.Classes
         public string Username { get; internal set; }
 
         [JsonProperty]
-        public ApexPlatformTypes Platform { get; internal set; }
+        public ApexPlatformType Platform { get; internal set; }
 
         [JsonProperty("avatar")]
         public string AvatarURL { get; internal set; }
 
         [JsonProperty("legend")]
-        public ApexLegendTypes CurrentLegend { get; internal set; }
+        public ApexLegendType CurrentLegend { get; internal set; }
 
         public async Task<ApexUserStats> GetStatsAsync()
         {

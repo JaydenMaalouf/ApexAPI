@@ -22,7 +22,7 @@ namespace ApexLegendsAPI
             RequestURL = NewURL;
         }
 
-        public async Task<IEnumerable<ApexUser>> GetUsers(string PlayerName, ApexPlatformTypes Platform = ApexPlatformTypes.PC)
+        public async Task<IEnumerable<ApexUser>> GetUsersAsync(string PlayerName, ApexPlatformType Platform = ApexPlatformType.PC)
         {
             var content = await SendRequest($"search.php?search={PlayerName}&platform={Platform.ToString().ToLower()}");
             if (!string.IsNullOrWhiteSpace(content))
@@ -42,9 +42,9 @@ namespace ApexLegendsAPI
             return null;
         }
 
-        public async Task<ApexUser> GetUser(string PlayerName, ApexPlatformTypes Platform = ApexPlatformTypes.PC)
+        public async Task<ApexUser> GetUserAsync(string PlayerName, ApexPlatformType Platform = ApexPlatformType.PC)
         {
-            var searchResults = await GetUsers(PlayerName, Platform);
+            var searchResults = await GetUsersAsync(PlayerName, Platform);
             if (searchResults != null && searchResults.Count() > 0)
             {
                 return searchResults.ElementAt(0);
@@ -52,7 +52,7 @@ namespace ApexLegendsAPI
             return null;
         }
 
-        public async Task<ApexUser> GetUser(Guid PlayerId, ApexPlatformTypes Platform = ApexPlatformTypes.PC)
+        public async Task<ApexUser> GetUserAsync(Guid PlayerId, ApexPlatformType Platform = ApexPlatformType.PC)
         {
             var content = await SendRequest($"player.php?aid={PlayerId.ToString("N").ToLower()}");
             if (!string.IsNullOrWhiteSpace(content))
@@ -72,7 +72,7 @@ namespace ApexLegendsAPI
             return null;
         }
 
-        public static async Task<string> SendRequest(string URL)
+        internal static async Task<string> SendRequest(string URL)
         {
             var response = await HttpClient.GetAsync($"{RequestURL}{URL}");
             if (response.IsSuccessStatusCode)

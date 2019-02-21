@@ -1,6 +1,6 @@
 ﻿namespace ApexLegendsAPI.Enums
 {
-    public enum ApexPlatformTypes
+    public enum ApexPlatformType
     {
         PC,
         PSN,

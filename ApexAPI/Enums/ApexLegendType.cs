@@ -1,6 +1,6 @@
 ﻿namespace ApexLegendsAPI.Enums
 {
-    public enum ApexLegendTypes
+    public enum ApexLegendType
     {
         Lifeline,
         Mirage,

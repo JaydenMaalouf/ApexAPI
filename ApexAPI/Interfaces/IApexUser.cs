@@ -8,8 +8,8 @@ namespace ApexLegendsAPI.Interfaces
     {
         Guid UserId { get; }
         string Username { get; }
-        ApexPlatformTypes Platform { get; }
+        ApexPlatformType Platform { get; }
         string AvatarURL { get; }
-        ApexLegendTypes CurrentLegend { get; }
+        ApexLegendType CurrentLegend { get; }
     }
 }

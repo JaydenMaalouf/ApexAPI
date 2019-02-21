@@ -18,12 +18,30 @@ var API = new ApexAPI();
 Now you can easily make calls to the API.
 
 ## GetUser()
-If you already know a user's Username, you can use the `GetUser()` method to return an `ApexUser` object.
+If you already know a user's Guid or Username, you can use the `GetUser()` method to return an `ApexUser` object.
 - Username:
 ```csharp
 var user = API.GetUser("username");
 ```
+- Guid:
+```csharp
+var user = API.GetUser(Guid);
+```
 
+**Don't forget:** By default the API Wrapper will use `PC` as the desired User platform. 
+You can easily bypass this by specifying a `ApexPlatformType` with the `GetUser()` function.
+```csharp
+var user = API.GetUser(Guid, ApexPlatformType.XBL);
+```
+
+## GetUsers()
+Same as GetUser() but allows to search by generic terms.
+- This will return any users who's username starts with `user`:
+```csharp
+var user = API.GetUser("user");
+```
+  
+## GetStatsAsync()
 If you're wanting to get a user's stats, you can simply use `.GetStatsAsync();` and it will return the requested stats.
 ```csharp
 var user = API.GetUser("username");
@@ -32,4 +50,4 @@ var stats = await user.GetStatsAsync();
 
 **NOTE: THE API WILL ONLY RETURN VALID DATA FOR THE CURRENT ACTIVE LEGEND FOR THE USER**
 
-Thanks for using my wrapper <3
+Thanks for using my wrapper <3 By Kanga#8041

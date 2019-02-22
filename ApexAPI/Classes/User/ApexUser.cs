@@ -29,19 +29,22 @@ namespace ApexLegendsAPI.Classes
 
         public async Task<ApexUserStats> GetStatsAsync()
         {
-            var content = await ApexAPI.SendRequest($"player.php?aid={UserId.ToString("N").ToLower()}");
-            if (!string.IsNullOrWhiteSpace(content))
+            if (UserId != Guid.Empty)
             {
-                var result = JsonConvert.DeserializeObject<ResultError>(content);
-                if (result.IsError)
+                var content = await ApexAPI.SendRequest($"player.php?aid={UserId.ToString("N").ToLower()}");
+                if (!string.IsNullOrWhiteSpace(content))
                 {
-                    return null;
-                }
+                    var result = JsonConvert.DeserializeObject<ResultError>(content);
+                    if (result.IsError)
+                    {
+                        return null;
+                    }
 
-                var userData = JsonConvert.DeserializeObject<ApexTempUserStats>(content);
-                if (userData != null)
-                {
-                    return new ApexUserStats(userData);
+                    var userData = JsonConvert.DeserializeObject<ApexTempUserStats>(content);
+                    if (userData != null)
+                    {
+                        return new ApexUserStats(userData);
+                    }
                 }
             }
             return null;

@@ -2,6 +2,7 @@
 {
     public enum ApexLegendType
     {
+        Unknown,
         Lifeline,
         Mirage,
         Caustic,

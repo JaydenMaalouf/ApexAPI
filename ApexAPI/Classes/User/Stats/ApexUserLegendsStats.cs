@@ -2,6 +2,15 @@
 {
     public class ApexUserLegendsStats
     {
+        public ApexUserLegendStats Bangalore { get; internal set; }
+        public ApexUserLegendStats Bloodhound { get; internal set; }
+        public ApexUserLegendStats Caustic { get; internal set; }
+        public ApexUserLegendStats Gibraltar { get; internal set; }
+        public ApexUserLegendStats Lifeline { get; internal set; }
+        public ApexUserLegendStats Mirage { get; internal set; }
+        public ApexUserLegendStats Pathfinder { get; internal set; }
+        public ApexUserLegendStats Wraith { get; internal set; }
+
         internal ApexUserLegendsStats(ApexTempUserStats data)
         {
             Bangalore = new ApexUserLegendStats(data.KillsBangalore, data.HeadshotsBangalore, data.MatchesBangalore);
@@ -13,14 +22,5 @@
             Pathfinder = new ApexUserLegendStats(data.KillsPathfinder, data.HeadshotsPathfinder, data.MatchesPathfinder);
             Wraith = new ApexUserLegendStats(data.KillsWraith, data.HeadshotsWraith, data.MatchesWraith);
         }
-
-        public ApexUserLegendStats Bangalore { get; internal set; }
-        public ApexUserLegendStats Bloodhound { get; internal set; }
-        public ApexUserLegendStats Caustic { get; internal set; }
-        public ApexUserLegendStats Gibraltar { get; internal set; }
-        public ApexUserLegendStats Lifeline { get; internal set; }
-        public ApexUserLegendStats Mirage { get; internal set; }
-        public ApexUserLegendStats Pathfinder { get; internal set; }
-        public ApexUserLegendStats Wraith { get; internal set; }
     }
 }

@@ -24,9 +24,11 @@ namespace ExampleTest
                     Console.WriteLine($"Platform: {user.Platform}");
 
                     var userStats = await user.GetStatsAsync();
+                    var currentLegendStats = userStats.GetCurrentLegendStats();
+                    var lifelineLegendStats = userStats.GetLegendStats(ApexLegendsAPI.Enums.ApexLegendType.Lifeline);
                 }
 
-                var userById = await API.GetUserAsync(Guid.Parse("f5337d769b7b29628f59d8c84ea45d9d"));
+                var userById = await API.GetUserAsync(Guid.Parse("f69f266bae0891b851a9c3c7f76d4323"));
                 if (userById != null)
                 {
                     Console.WriteLine($"Username: {userById.Username}");
@@ -35,6 +37,11 @@ namespace ExampleTest
                     Console.WriteLine($"Platform: {userById.Platform}");
 
                     var userStats = await userById.GetStatsAsync();
+
+                    var todaysStats = userStats.GetStatsToday();
+
+                    var yesterday = DateTime.UtcNow.Date.AddDays(-1);
+                    var yesterdaysStats = userStats.GetStatsFrom(yesterday);
                 }
             }
             Console.Read();

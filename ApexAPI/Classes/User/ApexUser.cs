@@ -11,8 +11,6 @@ namespace ApexLegendsAPI.Classes
 {
     public class ApexUser : IApexUser
     {
-        internal ApexUser() { }
-
         [JsonProperty("aid")]
         public Guid UserId { get; internal set; }
 
@@ -27,6 +25,8 @@ namespace ApexLegendsAPI.Classes
 
         [JsonProperty("legend")]
         public ApexLegendType CurrentLegend { get; internal set; }
+
+        internal ApexUser() { }
 
         public async Task<ApexUserStats> GetStatsAsync()
         {

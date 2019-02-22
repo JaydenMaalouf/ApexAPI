@@ -55,7 +55,7 @@ namespace ApexLegendsAPI.Classes
             return null;
         }
 
-        public ApexDailyStats GetStatsFrom(DateTime Date)
+        public ApexDailyStats GetStatsFrom(DateTime UtcDate)
         {
             if (DailyStats == null)
             {
@@ -63,7 +63,7 @@ namespace ApexLegendsAPI.Classes
                 return null;
             }
 
-            if (DailyStats.TryGetValue(Date, out var dailyStats))
+            if (DailyStats.TryGetValue(UtcDate, out var dailyStats))
             {
                 return dailyStats;
             }

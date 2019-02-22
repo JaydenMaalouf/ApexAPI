@@ -10,9 +10,9 @@
     <PackageTags>Apex, Legends, API, Wrapper</PackageTags>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <Description>An unofficial .NET API Wrapper for the Fortnite API (https://apextab.com)</Description>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

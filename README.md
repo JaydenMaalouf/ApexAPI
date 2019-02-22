@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-1.0.1-brightgreen.svg)](https://www.nuget.org/packages/ApexAPI/)
+[![NuGet](https://img.shields.io/badge/nuget-1.0.2-brightgreen.svg)](https://www.nuget.org/packages/ApexAPI/)
 [![Discord](https://discordapp.com/api/guilds/548060839450640385/widget.png)](https://discord.gg/venV8Sz)
 
 # ApexAPI - C# Apex Legends API

@@ -15,7 +15,7 @@ namespace ApexLegendsAPI.Classes
         [JsonProperty("aid")]
         public Guid UserId { get; internal set; }
 
-        [JsonProperty]
+        [JsonProperty("name")]
         public string Username { get; internal set; }
 
         [JsonProperty]

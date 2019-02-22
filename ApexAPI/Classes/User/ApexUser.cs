@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
@@ -29,22 +30,24 @@ namespace ApexLegendsAPI.Classes
 
         public async Task<ApexUserStats> GetStatsAsync()
         {
-            if (UserId != Guid.Empty)
+            if (UserId == Guid.Empty)
             {
-                var content = await ApexAPI.SendRequest($"player.php?aid={UserId.ToString("N").ToLower()}");
-                if (!string.IsNullOrWhiteSpace(content))
-                {
-                    var result = JsonConvert.DeserializeObject<ResultError>(content);
-                    if (result.IsError)
-                    {
-                        return null;
-                    }
+                return null;
+            }
 
-                    var userData = JsonConvert.DeserializeObject<ApexTempUserStats>(content);
-                    if (userData != null)
-                    {
-                        return new ApexUserStats(userData);
-                    }
+            var content = await ApexAPI.SendRequest($"api/player.php", new KeyValuePair<string, string>("aid", $"{UserId.ToString("N").ToLower()}"));
+            if (!string.IsNullOrWhiteSpace(content))
+            {
+                var result = JsonConvert.DeserializeObject<ResultError>(content);
+                if (result.IsError)
+                {
+                    return null;
+                }
+
+                var userData = JsonConvert.DeserializeObject<ApexTempUserStats>(content);
+                if (userData != null)
+                {
+                    return new ApexUserStats(userData);
                 }
             }
             return null;

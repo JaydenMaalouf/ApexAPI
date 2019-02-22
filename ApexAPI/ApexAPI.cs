@@ -8,23 +8,27 @@ using Newtonsoft.Json;
 
 using ApexLegendsAPI.Enums;
 using ApexLegendsAPI.Classes;
+using System.Web;
 
 namespace ApexLegendsAPI
 {
     public class ApexAPI
     {
-        private static string RequestURL = "https://apextab.com/api/";
         private static HttpClient HttpClient = new HttpClient();
-
-        public ApexAPI() { }
-        public ApexAPI(string NewURL)
+        
+        public ApexAPI(string RequestURL = "http://apextab.com/")
         {
-            RequestURL = NewURL;
+            HttpClient.BaseAddress = new Uri(RequestURL);
         }
 
         public async Task<IEnumerable<ApexUser>> GetUsersAsync(string PlayerName, ApexPlatformType Platform = ApexPlatformType.PC)
         {
-            var content = await SendRequest($"search.php?search={PlayerName}&platform={Platform.ToString().ToLower()}");
+            if (string.IsNullOrWhiteSpace(PlayerName))
+            {
+                return null;
+            }
+
+            var content = await SendRequest($"api/search.php", new KeyValuePair<string, string>("search", PlayerName), new KeyValuePair<string, string>("platform", Platform.ToString().ToLower()));
             if (!string.IsNullOrWhiteSpace(content))
             {
                 var result = JsonConvert.DeserializeObject<ResultError>(content);
@@ -44,6 +48,11 @@ namespace ApexLegendsAPI
 
         public async Task<ApexUser> GetUserAsync(string PlayerName, ApexPlatformType Platform = ApexPlatformType.PC)
         {
+            if (string.IsNullOrWhiteSpace(PlayerName))
+            {
+                return null;
+            }
+
             var searchResults = await GetUsersAsync(PlayerName, Platform);
             if (searchResults != null && searchResults.Count() > 0)
             {
@@ -52,9 +61,14 @@ namespace ApexLegendsAPI
             return null;
         }
 
-        public async Task<ApexUser> GetUserAsync(Guid PlayerId, ApexPlatformType Platform = ApexPlatformType.PC)
+        public async Task<ApexUser> GetUserAsync(Guid UserId, ApexPlatformType Platform = ApexPlatformType.PC)
         {
-            var content = await SendRequest($"player.php?aid={PlayerId.ToString("N").ToLower()}");
+            if (UserId == Guid.Empty)
+            {
+                return null;
+            }
+
+            var content = await SendRequest($"api/player.php", new KeyValuePair<string, string>("aid", $"{UserId.ToString("N").ToLower()}"));
             if (!string.IsNullOrWhiteSpace(content))
             {
                 var result = JsonConvert.DeserializeObject<ResultError>(content);
@@ -72,9 +86,11 @@ namespace ApexLegendsAPI
             return null;
         }
 
-        internal static async Task<string> SendRequest(string URL)
+        internal static async Task<string> SendRequest(string path, params KeyValuePair<string, string> [] UrlParameters)
         {
-            var response = await HttpClient.GetAsync($"{RequestURL}{URL}");
+            var urlParametersString = string.Join("&", UrlParameters.Select(x => x.Key + "=" + x.Value).ToArray());
+            var queryUrl = (string.IsNullOrWhiteSpace(urlParametersString) ? path : $"{path}?{urlParametersString}");
+            var response = await HttpClient.GetAsync(queryUrl);
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadAsStringAsync();

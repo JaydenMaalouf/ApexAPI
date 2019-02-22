@@ -7,7 +7,7 @@ namespace ApexLegendsAPI.Classes
         internal ResultError() { }
 
         [JsonProperty("error")]
-        public string ErrorCode { get; internal set; }
-        public bool IsError => !string.IsNullOrWhiteSpace(ErrorCode);
+        public string ErrorMessage { get; internal set; }
+        public bool IsError => !string.IsNullOrWhiteSpace(ErrorMessage);
     }
 }

@@ -4,14 +4,17 @@
     {
         internal ApexUserStats(ApexTempUserStats stats)
         {
-            Level = stats.Level;
-            Kills = stats.Kills;
-            SkillRatio = stats.SkillRatio;
-            Visits = stats.Visits;
-            Headshots = stats.Headshots;
-            Matches = stats.Matches;
-            GlobalRank = stats.GlobalRank;
-            Legends = new ApexUserLegendsStats(stats);
+            if (stats.PlayerFound)
+            {
+                Level = stats.Level;
+                Kills = stats.Kills;
+                SkillRatio = stats.SkillRatio;
+                Visits = stats.Visits;
+                Headshots = stats.Headshots;
+                Matches = stats.Matches;
+                GlobalRank = stats.GlobalRank;
+                Legends = new ApexUserLegendsStats(stats);
+            }
         }
 
         public int Level { get; internal set; }

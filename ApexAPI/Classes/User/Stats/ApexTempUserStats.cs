@@ -5,6 +5,8 @@ namespace ApexLegendsAPI.Classes
     internal class ApexTempUserStats
     {
         [JsonProperty]
+        public bool PlayerFound { get; internal set; }
+        [JsonProperty]
         public int Level { get; internal set; }
         [JsonProperty]
         public int Kills { get; internal set; }

@@ -34,7 +34,7 @@ namespace ExampleTest
                     Console.WriteLine($"Current Legend: {userById.CurrentLegend}");
                     Console.WriteLine($"Platform: {userById.Platform}");
 
-                    var userStats = await user.GetStatsAsync();
+                    var userStats = await userById.GetStatsAsync();
                 }
             }
             Console.Read();

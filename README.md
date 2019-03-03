@@ -1,5 +1,4 @@
 [![NuGet](https://img.shields.io/badge/nuget-1.0.2-brightgreen.svg)](https://www.nuget.org/packages/ApexAPI/)
-[![Discord](https://discordapp.com/api/guilds/548060839450640385/widget.png)](https://discord.gg/venV8Sz)
 
 # ApexAPI - C# Apex Legends API
 An unofficial .NET API Wrapper for the Apex Tab API (http://apextab.com)
@@ -52,4 +51,4 @@ var stats = await user.GetStatsAsync();
 
 #### Thanks for using my wrapper ❤️ By Kanga#8041.
 
-**Please note: This API wrapper is for educational purposes only. I am not affiliated with Origin, EA or any of their entities/affiliates.**
+**Please note: This API wrapper is for educational purposes only. I am not affiliated with ApexTab, Origin, EA or any of their entities/affiliates.**

@@ -50,4 +50,6 @@ var stats = await user.GetStatsAsync();
 
 **NOTE: THE API WILL ONLY RETURN VALID DATA FOR THE CURRENT ACTIVE LEGEND FOR THE USER**
 
-Thanks for using my wrapper <3 By Kanga#8041
+#### Thanks for using my wrapper ❤️ By Kanga#8041.
+
+**Please note: This API wrapper is for educational purposes only. I am not affiliated with Origin, EA or any of their entities/affiliates.**

@@ -21,30 +21,30 @@ Now you can easily make calls to the API.
 If you already know a user's Guid or Username, you can use the `GetUserAsync()` method to return an `ApexUser` object.
 - Username:
 ```csharp
-var user = API.GetUserAsync("username");
+var user = await API.GetUserAsync("username");
 ```
 - Guid:
 ```csharp
-var user = API.GetUserAsync(Guid);
+var user = await API.GetUserAsync(Guid);
 ```
 
 **Don't forget:** By default the API Wrapper will use `PC` as the desired User platform. 
 You can easily bypass this by specifying a `ApexPlatformType` with the `GetUserAsync()` function.
 ```csharp
-var user = API.GetUserAsync(Guid, ApexPlatformType.XBL);
+var user = await API.GetUserAsync(Guid, ApexPlatformType.XBL);
 ```
 
 ## GetUsersAsync()
 Same as `GetUserAsync()` but allows to search by generic terms.
 - This will return any users who's username starts with `user`:
 ```csharp
-var user = API.GetUsersAsync("user");
+var user = await API.GetUsersAsync("user");
 ```
   
 ## GetStatsAsync()
 If you're wanting to get a user's stats, you can simply use `.GetStatsAsync();` and it will return the requested stats.
 ```csharp
-var user = API.GetUserAsync("username");
+var user = await API.GetUserAsync("username");
 var stats = await user.GetStatsAsync();
 ```
 
